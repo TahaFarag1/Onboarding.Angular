@@ -1,0 +1,44 @@
+.alert {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 400px; /* Adjust the maximum width as needed */
+}
+
+.alert strong {
+    font-weight: bold;
+}
+
+.alert-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Adjust the z-index as needed */
+  }
+  
+ 
+  /* Angular Animation */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  .slide-in {
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  .slide-out {
+    animation: slideOut 0.5s ease-in-out;
+  }

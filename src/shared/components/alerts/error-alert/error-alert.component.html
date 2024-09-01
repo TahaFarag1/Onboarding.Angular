@@ -1,0 +1,7 @@
+<div class="alert-container" [@slideAnimation] *ngIf="showAlert">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <!-- <strong>انتهاء</strong>  -->
+    {{message}}
+    <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+  </div>
+</div>
