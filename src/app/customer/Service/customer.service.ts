@@ -20,15 +20,15 @@ export class CustomerService {
 
 
   getTicket(id: string) {
-    return this.http.get<ResultViewModel>(`${this.PublishUrl}OnboardingRequest/${id}`);
+    return this.http.get<ResultViewModel>(`${this.apiUrl}OnboardingRequest/${id}`);
   }
 
   uploadFiles(formData: FormData): Observable<ResultViewModel> {
-    return this.http.post<ResultViewModel>(`${this.PublishUrl}OnboardingRequest/upload`, formData);
+    return this.http.post<ResultViewModel>(`${this.apiUrl}OnboardingRequest/upload`, formData);
   }
 
   updateStatusName(statusName: string, onboardingRequestId: string) {
-    const url = `${this.PublishUrl}OnboardingRequest/UpdateStatusName/${statusName}?onboardingRequestId=${onboardingRequestId}`;
+    const url = `${this.apiUrl}OnboardingRequest/UpdateStatusName/${statusName}?onboardingRequestId=${onboardingRequestId}`;
     return this.http.post<ResultViewModel>(url, {});
   }
   

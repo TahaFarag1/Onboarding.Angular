@@ -1,6 +1,6 @@
 <app-success-alert [message]="message|| 'Your ticket has been submitted successfully'" *ngIf="showSuccess"></app-success-alert>
 <app-error-alert [message]="message|| 'An error has been occurred while sending your ticket'" *ngIf="showError"></app-error-alert>
-
+<app-loader [showLoader]="isLoading"></app-loader>
 
 
 <div class="customer-info-container">
@@ -52,7 +52,7 @@
             <i class="fas fa-cloud-upload-alt"></i>
             <p>Drag and drop files here or click to select</p>
           </div>
-          <input type="file" id="fileUpload" (change)="onFileSelected($event)" #fileInput hidden multiple>
+          <input type="file" id="fileUpload" (change)="onFileSelected($event)" #fileInput [disabled]="DisapledtheSelect" hidden multiple>
         </div>
         
         <div class="selected-files" *ngIf="selectedFiles.length > 0">

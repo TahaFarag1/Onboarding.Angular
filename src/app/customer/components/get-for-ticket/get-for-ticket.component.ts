@@ -15,7 +15,8 @@ export class GetForTicketComponent {
   showSuccess = false;
   showError = false;
   message : string| null =null ; 
-
+  isLoading: boolean = false;
+  DisapledtheSelect: boolean = false;
 
   constructor(
     private CustomerService: CustomerService,
@@ -28,17 +29,28 @@ export class GetForTicketComponent {
 
       if (this.Id) {
         this.fetchTicket(this.Id);
+        this.startLoading();
       } else {
         console.log('No ID found in the route');
       }
     });
   }
 
+  startLoading() {
+     this.isLoading = true;
+ 
+     // Simulate an asynchronous task (e.g., API call)
+     setTimeout(() => {
+       this.isLoading = false;
+     }, 500);
+   }
+
   private fetchTicket(id: string): void {
     this.CustomerService.getTicket(id).subscribe(
       (res) => {
         if (res.success) {
           this.ticket = res.data as Ticket;
+          console.log(this.ticket);
           this.updateCustomerInfo();
         } else {
           console.log('Error occurred while fetching ticket');
@@ -57,6 +69,17 @@ export class GetForTicketComponent {
       this.customer.cifNumber = this.ticket.ticketNumber || '';
     }
   }
+
+
+  private ClearCustomerInfo(): void {
+    
+      this.customer.name =  '';
+      this.customer.nationalId =  '';
+      this.customer.cifNumber = '';
+      this.selectedFiles = [];
+      this.DisapledtheSelect = true;
+  }
+
 
   customer = { name: '', cifNumber: '', nationalId: '' };
   selectedFiles: File[] = [];
@@ -118,6 +141,8 @@ export class GetForTicketComponent {
     });
 
 
+    this.isLoading =true;
+
     this.CustomerService.uploadFiles(formData).subscribe(
       (response) => {
         if (response.success) {
@@ -140,6 +165,11 @@ export class GetForTicketComponent {
         this.showError = true;
       }
     );
+
+    this.ClearCustomerInfo();
+
+    this.isLoading =false;
+
   }
 
   private isValidFile(file: File): boolean {
@@ -162,6 +192,7 @@ export class GetForTicketComponent {
 
 
   updateStatus(): void {
+    
     if ( !this.Id) {
       console.log('Status name or Onboarding Request ID is missing.');
       return;
