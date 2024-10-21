@@ -11,6 +11,7 @@ import { Ticket } from '../../ViewModels/Ticket';
 export class GetForTicketComponent {
   ticket: Ticket | undefined;
   public Id: string = '';
+  statusName: string = '';
   showSuccess = false;
   showError = false;
   message : string| null =null ; 
@@ -124,6 +125,7 @@ export class GetForTicketComponent {
           //this.updateCustomerInfo();
           this.message=response.message;
           this.showSuccess = true;
+          this.updateStatus();
         } else {
           //console.log('Error occurred while fetching ticket');
           this.message = 'Error occurred while fetching ticket';
@@ -132,7 +134,9 @@ export class GetForTicketComponent {
       },
       (error) => {
         console.error('Error :', error);
-        this.message = error.message;
+        this.message = 'Error occurred while updating the status.';
+
+        //this.message = error.message;
         this.showError = true;
       }
     );
@@ -155,4 +159,34 @@ export class GetForTicketComponent {
 
     return true;
   }
+
+
+  updateStatus(): void {
+    if ( !this.Id) {
+      console.log('Status name or Onboarding Request ID is missing.');
+      return;
+    }
+    this.statusName = 'CustomerVisittedBranch';
+    this.CustomerService.updateStatusName( this.statusName , this.Id).subscribe(
+      (response) => {
+        if (response.success) {
+          this.message = 'Status updated successfully!';
+          //this.showSuccess = true;
+          //this.showError = false;
+        } else {
+          this.message = 'Error occurred while updating the status.';
+          //this.showError = true;
+          //this.showSuccess = false;
+        }
+      },
+      (error) => {
+        console.error('Error :', error);
+        //this.message = 'An error occurred while updating the status.';
+        //this.showError = true;
+        //this.showSuccess = false;
+      }
+    );
+  }
+
+
 }

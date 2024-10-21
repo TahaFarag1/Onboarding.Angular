@@ -1,3 +1,26 @@
+.ADCBcardHeader
+{
+    background-color: #333F48 !important; color: white;
+}
+.ADCBBullet
+{
+    width: 20px;margin-right: 10px;
+}
+.customBtn
+{
+    background-color: #4a4a4a;
+    color: #fff;
+    border: 2px solid #4a4a4a;
+    border-radius: 5px;
+    
+   
+}
+.customBtn:hover
+{
+    background-color: #ba1b19;
+    border: 2px solid #ba1b19;
+  
+}
 .customer-info-container {
   max-width: 600px;
   margin: 2rem auto;
