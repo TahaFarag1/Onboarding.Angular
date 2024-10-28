@@ -148,17 +148,20 @@ export class GetForTicketComponent {
         if (response.success) {
           //this.ticket = res.data as Ticket;
           //this.updateCustomerInfo();
+          this.isLoading = false;
           this.message=response.message;
           this.showSuccess = true;
           this.updateStatus();
         } else {
           //console.log('Error occurred while fetching ticket');
+          this.isLoading = false;
           this.message = 'Error occurred while fetching ticket';
           this.showError = true;
         }
       },
       (error) => {
         console.error('Error :', error);
+        this.isLoading = false;
         this.message = 'Error occurred while updating the status.';
 
         //this.message = error.message;
@@ -166,9 +169,14 @@ export class GetForTicketComponent {
       }
     );
 
+    //this.isLoading =false;
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 500);
+
     this.ClearCustomerInfo();
 
-    this.isLoading =false;
+    //this.isLoading =false;
 
   }
 
