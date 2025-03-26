@@ -173,7 +173,7 @@ export class GetForTicketComponent {
   }
 
   private isValidFile(file: File): boolean {
-    const maxSizeInMB = 5;
+    const maxSizeInMB = 10;
     const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
     const allowedTypes = ['image/png', 'image/jpeg', 'application/pdf'];
 

@@ -12,7 +12,7 @@ export class CustomerService {
 
   constructor(private http:HttpClient) { }
 
-  private apiUrl = 'http://172.21.95.70/api/api/';//'http://localhost:5136/api/';
+  private apiUrl = 'http://localhost:5136/api/';
 
   //private PublishUrl = 'http://172.21.95.70/api/api/';
 
